@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 [tool.poetry]
 # ...
 packages = [
-    { include = "src", from = "poetry_demo_github_actions" },
+    { include = "src", from = "." },  # Include the `src` folder as the package
 ]
 
 [tool.poetry.dependencies]
