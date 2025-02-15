@@ -1,6 +1,5 @@
 name: Python CI/CD Workflow
 
-# Trigger the workflow on push to any branch
 on:
   push:
     branches:
@@ -21,21 +20,20 @@ jobs:
         with:
           python-version: '3.10.8'  # Specific Python version
 
-      # Step 3: Install Poetry (if not already installed)
+      # Step 3: Install Poetry
       - name: Install Poetry
         run: |
           pip install poetry
 
-      # Step 4: Install dependencies using Poetry
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: |
-          poetry install
-          poetry sync
+          poetry install  # Installs all dependencies (no --with dev needed)
 
       # Step 5: Run unit tests
       - name: Run unit tests
         run: |
-          python -m pytest  # Replace with your test command if different
+          poetry run pytest  # Run tests using Poetry
 
       # Step 6: Build and execute your Python code
       - name: Build and execute
