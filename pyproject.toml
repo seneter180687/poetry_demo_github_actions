@@ -1,4 +1,4 @@
-[project]
+[tool.poetry]
 name = "poetry-github-application-demo"
 version = "0.1.0"
 description = "This is a sample code to test poetry and github actions"
@@ -6,15 +6,13 @@ authors = [
     {name = "Your Name", email = "you@example.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.10"
-
 packages = [
     { include = "src", from = "." }  # Look for the package in the `src` folder
 ]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pytest = "8.3.4"  # Moved to main dependencies
+pytest = "8.3.4"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
