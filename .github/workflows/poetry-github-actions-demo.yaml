@@ -28,15 +28,19 @@ jobs:
       # Step 4: Install dependencies
       - name: Install dependencies
         run: |
-          poetry install  # Installs all dependencies (no --with dev needed)
+          poetry install  # Installs all dependencies and the current project
 
       # Step 5: Run unit tests
       - name: Run unit tests
         run: |
           poetry run pytest  # Run tests using Poetry
 
-      # Step 6: Build and execute your Python code
-      - name: Build and execute
+      # Step 6: Build the project
+      - name: Build the project
         run: |
-          poetry run python -V  # Verify Python version
           poetry build  # Build the project using Poetry
+
+      # Step 7: Execute the script and print output
+      - name: Execute script
+        run: |
+          poetry run python src/app/code.py  # Run your script
