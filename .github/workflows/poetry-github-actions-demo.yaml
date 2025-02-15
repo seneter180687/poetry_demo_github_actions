@@ -38,9 +38,15 @@ jobs:
       # Step 6: Build the project
       - name: Build the project
         run: |
-          poetry build  # Build the project using Poetry
+          poetry build  # Build the project and create a wheel file
 
-      # Step 7: Execute the script and print output
+      # Step 7: Verify the wheel file
+      - name: Verify wheel file
+        run: |
+          ls dist/  # List the contents of the `dist` directory
+          echo "Wheel file created successfully!"
+
+      # Step 8: Execute the script and print output
       - name: Execute script
         run: |
           poetry run python src/app/code.py  # Run your script
