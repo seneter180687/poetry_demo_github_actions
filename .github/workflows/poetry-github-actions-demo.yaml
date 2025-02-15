@@ -1,0 +1,52 @@
+name: Python CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - '*'  # Triggers on any branch
+
+jobs:
+  test-build-execute:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.8'  # Specific Python version
+
+      # Step 3: Install Poetry
+      - name: Install Poetry
+        run: |
+          pip install poetry
+
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: |
+          poetry install  # Installs all dependencies and the current project
+
+      # Step 5: Run unit tests
+      - name: Run unit tests
+        run: |
+          poetry run pytest  # Run tests using Poetry
+
+      # Step 6: Build the project
+      - name: Build the project
+        run: |
+          poetry build  # Build the project and create a wheel file
+
+      # Step 7: Verify the wheel file
+      - name: Verify wheel file
+        run: |
+          ls dist/  # List the contents of the `dist` directory
+          echo "Wheel file created successfully!"
+
+      # Step 8: Execute the script and print output
+      - name: Execute script
+        run: |
+          poetry run python src/app/code.py  # Run your script
